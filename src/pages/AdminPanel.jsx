@@ -59,7 +59,7 @@ function AdminPanel() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              UptoSkills Admin Dashboard
+              Admin Dashboard
             </motion.h1>
             <motion.p
               className="text-xl text-white/90"
@@ -76,7 +76,7 @@ function AdminPanel() {
 
         <footer className="text-center py-8 border-t border-border mt-12">
           <p className="text-muted-foreground">
-            © 2025 UptoSkills Team. All rights reserved. ✨
+            © 2025. All rights reserved. ✨
           </p>
         </footer>
       </div>

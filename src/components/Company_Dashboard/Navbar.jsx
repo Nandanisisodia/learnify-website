@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Bell, Settings, User, Search, Sun, Moon, Menu } from 'lucide-react';
 import { Button } from '../Company_Dashboard/ui/button';
 import { Input } from '../Company_Dashboard/ui/input';
-import logo from '../../assets/uptoskills_logo.png'
+import logo from '../../assets/Learnify_logo.png'
 
 export default function Navbar({ onMenuClick }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -52,7 +52,7 @@ export default function Navbar({ onMenuClick }) {
             <div className="w-15 h-9 rounded-xl flex items-center justify-center relative overflow-hidden">
               <img
                 src={logo}
-                alt="UptoSkill Logo"
+                alt="Logo"
                 className="object-contain w-25 h-25"
               />
             </div>

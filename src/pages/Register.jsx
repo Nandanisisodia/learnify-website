@@ -30,23 +30,32 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.email) {
-      alert("Please enter your email.");
-      return;
+  e.preventDefault();
+
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/api/profile",
+      {
+        full_name: formData.name,
+        email: formData.email,          
+        password: formData.password,    
+        contact_number: formData.phone,
+        why_hire_me: "New user registration",
+        ai_skill_summary: "Beginner",
+        domainsOfInterest: ["Web Development", "Programming"],
+        othersDomain: "",
+      }
+    );
+
+    if (response.data.success) {
+      alert("Registration successful 🎉");
+      navigate("/login");
     }
-    try {
-      await axios.post("http://localhost:5000/api/auth/send-otp", {
-        email: formData.email,
-      });
-      setTimeout(() => {
-        navigate("/otpverify", { state: { ...formData } });
-      }, 1000);
-    } catch (err) {
-      console.error(err);
-      alert("Failed to send OTP. Please try again.");
-    }
-  };
+  } catch (err) {
+    console.error(err);
+    alert("Registration failed. Please try again.");
+  }
+};
 
   return (
     <div className="h-[100vh] flex items-center justify-center px-5 lg:px-0">

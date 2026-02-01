@@ -10,6 +10,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+//import LearnifyLogo from "../../../assets/Learnify_logo.png";
 
 const sidebarItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
@@ -67,6 +68,7 @@ export default function Sidebar({ isOpen = false, setIsOpen = () => {} }) {
         animate={{ x: isOpen ? 0 : -264 }}
         transition={{ duration: 0.3 }}
       >
+
         {/* Close Button (Mobile only) */}
         <AnimatePresence>
           {isOpen && !isDesktop && (

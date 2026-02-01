@@ -15,7 +15,7 @@ import boy from '../assets/boy2.png'
 const mockStudents = [
   {
     id: "1",
-    name: "Md. Najam",
+    name: "Amit",
     domain: "MERN Stack Developer",
     skillLevel: "Advanced" ,
     badges: ["React Expert", "Node.js", "AWS Certified", "Open Source Contributor"],
@@ -26,18 +26,18 @@ const mockStudents = [
   },
   {
     id: "2",
-    name: "Astha Agrawal",
+    name: "Nandani Sisodia",
     domain: "Web Development",
     skillLevel: "Intermediate" ,
     badges: ["Python", "TensorFlow", "Data Analysis"],
     location: "Bangalore, India",
     experience: "2 years",
-    rating: 4.6,
+    rating: 4.9,
     lastActive: "1 day ago",
   },
   {
     id: "3",
-    name: "Debasmita",
+    name: "Shashank",
     domain: "Mobile Development",
     skillLevel: "Advanced" ,
     badges: ["React Native", "iOS", "Android", "Flutter"],
@@ -48,7 +48,7 @@ const mockStudents = [
   },
   {
     id: "4",
-    name: "Ankit",
+    name: "Panav",
     domain: "UI/UX Design",
     skillLevel: "Intermediate" ,
     badges: ["Figma", "User Research", "Prototyping"],
@@ -145,7 +145,7 @@ export default function Index() {
                 >
                   Welcome to{" "}
                   <span className="bg-gradient-to-r from-[#01BDA5] via-[#43cea2] to-[#FF824C] bg-clip-text text-transparent font-extrabold drop-shadow-lg">
-                    UptoSkill
+                    Candidates
                   </span>{" "}
                   Hiring Dashboard
                 </motion.h1>
@@ -282,7 +282,7 @@ export default function Index() {
           {/* Footer */}
           <footer className="text-center py-8 border-t border-border mt-12">
             <p className="text-muted-foreground">
-              © 2024 UptoSkill. Empowering the next generation of talent.
+              © 2025. Empowering the next generation of talent.
             </p>
           </footer>
         </div>

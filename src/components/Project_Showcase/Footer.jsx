@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import logo from '../../assets/uptoskills-logo2.png';
+import logo from '../../assets/Learnify_logo.png';
 
 
 const Footer = () => {
@@ -25,7 +25,7 @@ const Footer = () => {
 </div>
 
       <p className="text-center text-sm text-gray-400">
-        2025 © UptoSkills, All Rights Reserved
+        2025 © LEARNIFY, All Rights Reserved
       </p>
     </footer>
   );

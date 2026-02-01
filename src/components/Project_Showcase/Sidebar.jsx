@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from '../../assets/uptoskills-logo2.png';
+import logo from '../../assets/Learnify_logo.png';
 
 function Sidebar({ isSidebarVisible, setIsSidebarVisible }) {
   const [activeItem, setActiveItem] = useState(null);
@@ -53,7 +53,7 @@ function Sidebar({ isSidebarVisible, setIsSidebarVisible }) {
       <div className="flex items-center justify-center mb-6">
   <img 
     src={logo} 
-    alt="Uptoskills Logo" 
+    alt="Logo" 
     className="w-32 sm:w-36 md:w-40 mx-auto mb-6" 
   />
 </div>

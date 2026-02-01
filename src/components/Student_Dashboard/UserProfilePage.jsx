@@ -11,11 +11,11 @@ const UserProfilePage = ({ isDarkMode, toggleDarkMode }) => {
 
   // Sample user data for demonstration
   const userData = {
-    email: "student@example.com",
-    full_name: "Ojesh",
-    contact_number: "91XXXXXXXX",
-    linkedin_url: "https://linkedin.com/in/ojesh",
-    github_url: "https://github.com/ojesh",
+    email: "nandanisisodia525@gmail.com",
+    full_name: "Nandani Sisodia",
+    contact_number: "96XXXXXXXX",
+    linkedin_url: "https://www.linkedin.com/in/nandani-sisodia-928077338?",
+    github_url: "https://github.com/Nandanisisodia",
     why_hire_me: "I am a passionate full-stack developer with expertise in React, Node.js, and cloud technologies. I have successfully delivered multiple projects and have strong problem-solving skills.",
     profile_completed: true,
     ai_skill_summary: "Experienced in machine learning algorithms, natural language processing, and computer vision. Proficient in Python, TensorFlow, and PyTorch.",

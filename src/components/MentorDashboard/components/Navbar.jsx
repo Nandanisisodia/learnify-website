@@ -37,7 +37,7 @@ const Navbar = ({ children }) => {
             >
                 {/* Logo */}
                 <div className="flex items-center justify-center h-16 border-b border-gray-700">
-                    <h1 className="text-xl font-bold text-green-400">UPTOSKILLS</h1>
+                    <h1 className="text-xl font-bold text-green-400">LEARNIFY</h1>
                 </div>
 
                 {/* Menu Items */}

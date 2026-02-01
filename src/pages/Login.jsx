@@ -1,142 +1,147 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import LearnifyLogo from "../assets/Learnify_logo.png";
+
 
 const LoginForm = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-        role: "student", // default login type
-    });
+  const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        setFormData((prev) => ({
-            ...prev,
-            [e.target.name]: e.target.value,
-        }));
-    };
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    role: "student",
+    email: "",
+    password: "",
+  });
 
-    return (
-        <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0">
-            <div className="max-w-screen-xl bg-white shadow-xs shadow-[#00BDA6] sm:rounded-lg flex justify-center flex-1">
-                {/* Left Image Section */}
-                <div className="hidden md:block md:w-1/2 lg:w-1/2 xl:w-7/12">
-                    <div className="h-full w-full bg-cover rounded-2xl" style={{
-                        backgroundImage: 'url(https://static.vecteezy.com/system/resources/previews/008/415/006/non_2x/employment-agency-for-recruitment-or-placement-job-service-with-skilled-and-experienced-career-laborers-in-flat-cartoon-illustration-vector.jpg)'
-                    }}></div>
-                </div>
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-                {/* Right Form Section */}
-                <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-                    <div className="flex flex-col items-center">
-                        <div className="text-center">
-                            <h1 className="text-4xl xl:text-4xl font-extrabold text-blue-900">
-                                <span className="text-[#00BDA6] capitalize">
-                                    {formData.role}
-                                </span>{" "}
-                                <span className="text-[#FF6D34]">Login</span>
-                            </h1>
-                            <p className="text-[16px] text-gray-500">
-                                Enter your details to login
-                            </p>
-                        </div>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-                        <div className="w-full flex-1 mt-8">
-                            <form className="mx-auto max-w-xs flex flex-col gap-4">
-                                {/* Role Selector */}
-                                <select
-                                    name="role"
-                                    value={formData.role}
-                                    onChange={handleChange}
-                                    className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 text-gray-700 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                >
-                                    <option value="Official">Login as Offiical</option>
-                                    <option value="student">Login as Student</option>
-                                    <option value="administrator">Login as Administrator</option>
-                                </select>
+    try {
+      const res = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-                                {/* Email Input */}
-                                <input
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                    type="email"
-                                    placeholder="Enter registered email-id"
-                                    required
-                                />
+      const data = await res.json();
 
-                                {/* Password Input */}
-                                <div className="relative w-full">
-                                    <input
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                        type={showPassword ? "text" : "password"}
-                                        placeholder="Enter your password"
-                                        required
-                                    />
-                                    <div
-                                        className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                    >
-                                        {showPassword ? (
-                                            <EyeOff className="h-5 w-5 text-gray-500" />
-                                        ) : (
-                                            <Eye className="h-5 w-5 text-gray-500" />
-                                        )}
-                                    </div>
-                                </div>
+      if (!data.success) {
+        alert(data.message);
+        return;
+      }
 
-                                {/* Submit Button */}
-                                <button
-                                    type="submit"
-                                    className="mt-5 tracking-wide font-semibold bg-[#FF6D34] text-gray-100 w-full py-4 rounded-lg hover:bg-[#00BDA6] transition-all duration-100 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                                >
-                                    <svg
-                                        className="w-6 h-6 -ml-2"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    >
-                                        <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                                        <circle cx="8.5" cy="7" r="4" />
-                                        <path d="M20 8v6M23 11h-6" />
-                                    </svg>
-                                    <span className="ml-3">Login</span>
-                                </button>
+      alert("Login successful 🎉");
 
-                                {/* Sign Up Link */}
-                                <p className="text-l text-gray-600 text-center">
-                                    Don't have an account?{" "}
-                                    <Link to="/register">
-                                        <span className="text-[#00BDA6] hover:text-[#FF6D34] font-semibold">
-                                            Sign up
-                                        </span>
-                                    </Link>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+      if (data.role === "student") {
+        navigate("/dashboard");
+      } else if (data.role === "administrator") {
+        navigate("/adminPanel");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong");
+    }
+  };
 
-                {/* Second Left Image Section */}
-                <div className="flex-1 text-center hidden md:flex">
-                    <div
-                        className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
-                        style={{
-                            backgroundImage:
-                                'url(https://www.mahindrauniversity.edu.in/wp-content/uploads/2023/04/why20is20training2020placement20cell20important1.png)',
-                        }}
-                    ></div>
-                </div>
+  return (
+    <div className="h-screen flex items-center justify-center px-6 bg-gray-50">
+      <div className="max-w-5xl w-full bg-white rounded-xl shadow-lg flex overflow-hidden">
+
+        {/* LEFT IMAGE */}
+        <div className="hidden md:block w-1/2 bg-cover"
+          style={{
+            backgroundImage:
+              "url(https://static.vecteezy.com/system/resources/previews/008/415/006/non_2x/employment-agency-for-recruitment-or-placement-job-service-with-skilled-and-experienced-career-laborers-in-flat-cartoon-illustration-vector.jpg)",
+          }}
+        />
+        
+        {/* RIGHT FORM */}
+        <div className="w-full md:w-1/2 p-10">
+        {/* LOGO */}
+<div className="flex justify-center mb-6">
+  <img
+    src={LearnifyLogo}
+    alt="Learnify"
+    className="h-12 object-contain"
+  />
+</div>
+          <h1 className="text-4xl font-extrabold text-center mb-2">
+            <span className="text-[#00BDA6] capitalize">{formData.role}</span>{" "}
+            <span className="text-[#FF6D34]">Login</span>
+          </h1>
+          <p className="text-center text-gray-500 mb-8">
+            Enter your details to login
+          </p>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+
+            {/* ROLE */}
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg bg-gray-100 border"
+            >
+              <option value="student">Login as Student</option>
+              <option value="administrator">Login as Administrator</option>
+            </select>
+
+            {/* EMAIL */}
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter registered email"
+              required
+              className="w-full px-4 py-3 rounded-lg bg-gray-100 border"
+            />
+
+            {/* PASSWORD */}
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter password"
+                required
+                className="w-full px-4 py-3 rounded-lg bg-gray-100 border"
+              />
+              <span
+                className="absolute right-3 top-3 cursor-pointer text-gray-500"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff /> : <Eye />}
+              </span>
             </div>
+
+            {/* BUTTON */}
+            <button
+              type="submit"
+              className="w-full bg-[#FF6D34] hover:bg-[#00BDA6] text-white py-3 rounded-lg font-semibold transition"
+            >
+              Login
+            </button>
+
+            {/* SIGN UP */}
+            <p className="text-center text-gray-600">
+              Don&apos;t have an account?{" "}
+              <Link to="/register" className="text-[#00BDA6] font-semibold">
+                Sign up
+              </Link>
+            </p>
+
+          </form>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default LoginForm;

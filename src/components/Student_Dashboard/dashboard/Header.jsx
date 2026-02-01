@@ -4,7 +4,7 @@ import { Bell, Settings, User, Search, Sun, Moon, Menu } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../Company_Dashboard/ui/button';
 import { Input } from '../../Company_Dashboard/ui/input';
-import logo from '../../../assets/uptoskills_logo.png'
+import LearnifyLogo from '../../../assets/Learnify_logo.png'
 
 export default function Header({ onMenuClick }) {
   const navigate = useNavigate();
@@ -61,9 +61,9 @@ export default function Header({ onMenuClick }) {
           >
             <div className="w-15 h-9 rounded-xl flex items-center justify-center relative overflow-hidden">
               <img
-                src={logo}
-                alt="UptoSkill Logo"
-                className="object-contain w-25 h-25"
+                src={LearnifyLogo}
+                alt="Learnify"
+                className="h-8 w-auto object-contain"
               />
             </div>
           </motion.div>

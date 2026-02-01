@@ -6,7 +6,7 @@ const contributionsData = [
     {
         platform: "GitHub",
         platformIcon: "github",
-        repository: "UptoSkills LMS",
+        repository: "LMS",
         summary: "Fixed bug in admin dashboard",
         date: "September 23, 2024",
     },

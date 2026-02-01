@@ -7,7 +7,7 @@ export default function App() {
       {/* Header */}
       <header className="fixed w-full z-50 bg-white/80 backdrop-blur-lg shadow-sm transition">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-          <img src="/uptoskill.jpeg" alt="Uptoskills Logo" className="h-10 transition-transform hover:scale-110" />
+          <img src="/Learnify.png" alt="Logo" className="h-10 transition-transform hover:scale-110" />
           <nav className="flex space-x-6 font-medium text-gray-800 text-sm">
             {["Home", "About", "Programs", "Contact"].map((link, i) => (
               <a key={i} href="#" className="relative group hover:text-[#00BDA6]">
@@ -139,7 +139,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white text-center py-6 text-sm">
-        <p>© 2025 Uptoskills. Built with 💻 by learners worldwide.</p>
+        <p>© 2025. Built with 💻 by learners worldwide.</p>
       </footer>
     </div>
   );

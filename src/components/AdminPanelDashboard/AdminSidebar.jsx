@@ -82,11 +82,6 @@ export default function AdminSidebar({ isOpen, setIsOpen, activeSection, setActi
         <div className="flex flex-col h-full pt-16">
           {/* Logo Section */}
           <div className="p-4 border-b border-sidebar-border">
-            <img
-              src="/uptoskill.jpeg"
-              alt="Uptoskills Logo"
-              className="w-32 h-auto mx-auto"
-            />
           </div>
 
           {/* Navigation Items */}
@@ -216,7 +211,7 @@ export default function AdminSidebar({ isOpen, setIsOpen, activeSection, setActi
               </div>
               <div>
                 <p className="text-sidebar-foreground font-medium">Admin</p>
-                <p className="text-sidebar-foreground/70 text-sm">UptoSkills Team</p>
+                <p className="text-sidebar-foreground/70 text-sm">Team</p>
               </div>
             </div>
 
