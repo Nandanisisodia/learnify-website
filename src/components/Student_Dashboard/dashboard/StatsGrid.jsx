@@ -1,12 +1,37 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Calendar, Star, TrendingUp } from 'lucide-react';
+import axios from 'axios';
 
 function StatsGrid() {
-  const stats = [
-    { title: "Attendance", value: "80%", icon: CheckCircle, color: "primary", delay: 0.1 },
-    { title: "Tasks Completed", value: "258+", icon: Calendar, color: "secondary", delay: 0.2 },
-    { title: "Tasks in Progress", value: "64%", icon: Star, color: "accent", delay: 0.3 },
-    { title: "Reward Points", value: "245", icon: TrendingUp, color: "success", delay: 0.4 },
+  const [stats, setStats] = useState({
+    attendance: 0,
+    tasks_completed: 0,
+    tasks_in_progress: 0,
+    reward_points: 0
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user?.id) return;
+        const res = await axios.get(`http://localhost:5000/api/stats/${user.id}`);
+        if (res.data.success) {
+          setStats(res.data.data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch stats:', err);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  const statCards = [
+    { title: "Attendance", value: `${stats.attendance}%`, icon: CheckCircle, color: "primary", delay: 0.1 },
+    { title: "Tasks Completed", value: `${stats.tasks_completed}`, icon: Calendar, color: "secondary", delay: 0.2 },
+    { title: "Tasks in Progress", value: `${stats.tasks_in_progress}%`, icon: Star, color: "accent", delay: 0.3 },
+    { title: "Reward Points", value: `${stats.reward_points}`, icon: TrendingUp, color: "success", delay: 0.4 },
   ];
 
   return (
@@ -19,7 +44,7 @@ function StatsGrid() {
         Your Progress
       </motion.h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
+        {statCards.map((stat) => (
           <motion.div
             key={stat.title}
             className="stat-card p-6 flex items-center gap-4"

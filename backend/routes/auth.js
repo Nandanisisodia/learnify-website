@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
     }
 
     const userQuery = `
-      SELECT id, full_name, email, password
+      SELECT id, full_name, email, password, role
       FROM user_details
       WHERE email = $1
     `;
@@ -42,11 +42,12 @@ router.post('/login', async (req, res) => {
     res.status(200).json({
       success: true,
       message: 'Login successful',
-      role,
+      role: user.role,
       user: {
         id: user.id,
         name: user.full_name,
-        email: user.email
+        email: user.email,
+        role: user.role
       }
     });
 

@@ -1,10 +1,13 @@
 import React from 'react';
 
 function WelcomeSection() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const name = user?.name || 'Buddy';
+
   return (
     <div className="welcome-section">
       <div className="welcome-content">
-        <h1>Hey Buddy</h1>
+        <h1>Hey {name}!</h1>
         <p>Your learning journey continues — and so does your path to real-world opportunities.</p>
         <p>Earn badges, showcase projects, and get noticed by recruiters.</p>
         <p><strong>Let's turn your effort into employment!</strong></p>

@@ -34,7 +34,7 @@ const LoginForm = () => {
         alert(data.message);
         return;
       }
-
+      localStorage.setItem('user', JSON.stringify(data.user));
       alert("Login successful 🎉");
 
       if (data.role === "student") {

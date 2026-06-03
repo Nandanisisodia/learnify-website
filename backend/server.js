@@ -12,10 +12,21 @@ app.use(express.json());
 // Import routes
 const authRoutes = require('./routes/auth');
 const userProfileRoutes = require('./routes/userProfile');
+const statsRoutes = require('./routes/stats'); 
+const noticesRoutes = require('./routes/notices');
+const assignmentsRoutes = require('./routes/assignments');
+const studentsRoutes = require('./routes/students');
+const messagesRoutes = require('./routes/messages');
+
 
 // Routes
 app.use('/api', authRoutes);
 app.use('/api', userProfileRoutes);
+app.use('/api', statsRoutes);
+app.use('/api', noticesRoutes);
+app.use('/api', assignmentsRoutes);
+app.use('/api', studentsRoutes);
+app.use('/api', messagesRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

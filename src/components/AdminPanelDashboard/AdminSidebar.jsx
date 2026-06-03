@@ -8,6 +8,7 @@ import {
   MessageSquare,
   LogOut,
   X,
+  ClipboardList,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -16,6 +17,7 @@ const sidebarItems = [
   { id: "students", label: "Students", icon: Users },
   { id: "companies", label: "Companies", icon: Building2 },
   { id: "projects", label: "Projects", icon: FolderOpen },
+  { id: "assignments", label: "Assignments", icon: ClipboardList },
   { id: "analytics", label: "Analytics", icon: BarChart3 },
   { id: "mentor", label: "Mentor Reviews", icon: MessageSquare },
 ];
