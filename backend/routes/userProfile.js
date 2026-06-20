@@ -165,4 +165,66 @@ router.get('/profile/:email', async (req, res) => {
   }
 });
 
+// ---------- UPDATE PROFILE BY USER ID (Edit Profile - no password needed) ----------
+router.put('/profile/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const {
+      full_name,
+      contact_number,
+      linkedin_url,
+      github_url,
+      why_hire_me,
+      ai_skill_summary,
+      domainsOfInterest,
+      othersDomain
+    } = req.body;
+
+    if (!full_name || !/^[A-Za-z ]+$/.test(full_name.trim())) {
+      return res.status(400).json({ success: false, message: 'Valid full name is required' });
+    }
+
+    if (!contact_number || !/^[0-9]{10}$/.test(contact_number)) {
+      return res.status(400).json({ success: false, message: 'Valid 10-digit contact number required' });
+    }
+
+    const updateQuery = `
+      UPDATE user_details
+      SET full_name = $1,
+          contact_number = $2,
+          linkedin_url = $3,
+          github_url = $4,
+          why_hire_me = $5,
+          ai_skill_summary = $6,
+          domains_of_interest = $7,
+          others_domain = $8,
+          profile_completed = TRUE,
+          updated_at = CURRENT_TIMESTAMP
+      WHERE id = $9
+      RETURNING *
+    `;
+
+    const result = await pool.query(updateQuery, [
+      full_name,
+      contact_number,
+      linkedin_url,
+      github_url,
+      why_hire_me,
+      ai_skill_summary,
+      domainsOfInterest || [],
+      othersDomain,
+      userId
+    ]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.status(200).json({ success: true, message: 'Profile updated successfully', data: result.rows[0] });
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
 module.exports = router;

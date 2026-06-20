@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const StudentProfileForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,32 @@ const StudentProfileForm = ({ onSubmit }) => {
     profile_completed: false,
     ai_skill_summary: '',
   });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user?.email) return;
+      try {
+        const res = await axios.get(`http://localhost:5000/api/profile/${user.email}`);
+        if (res.data.success) {
+          const d = res.data.data;
+          setFormData({
+            full_name: d.full_name || '',
+            contact_number: d.contact_number || '',
+            linkedin_url: d.linkedin_url || '',
+            github_url: d.github_url || '',
+            why_hire_me: d.why_hire_me || '',
+            profile_completed: d.profile_completed || false,
+            ai_skill_summary: d.ai_skill_summary || '',
+          });
+        }
+      } catch (err) {
+        console.error('Failed to fetch profile:', err);
+      }
+    };
+    fetchProfile();
+  }, []);
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

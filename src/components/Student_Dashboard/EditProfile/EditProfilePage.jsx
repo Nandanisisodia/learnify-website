@@ -30,38 +30,40 @@ const EditProfilePage = ({ isDarkMode, toggleDarkMode }) => {
     }
   };
 
-  const handleFormSubmit = async (formData) => {
-    // Combine formData and domainsOfInterest for submission
-    const fullData = {
-      ...formData,
-      domainsOfInterest,
-      othersDomain,
-    };
-    console.log('Submitting full profile data:', fullData);
-    
-    try {
-      const response = await fetch('http://localhost:5000/api/profile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(fullData),
-      });
+const handleFormSubmit = async (formData) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (!user?.id) {
+    alert('Please login again');
+    return;
+  }
 
-      const result = await response.json();
-
-      if (result.success) {
-        console.log('Profile saved successfully:', result.data);
-        alert('Profile saved successfully!');
-      } else {
-        console.error('Error saving profile:', result.message);
-        alert('Error saving profile: ' + result.message);
-      }
-    } catch (error) {
-      console.error('Network error:', error);
-      alert('Network error: Could not connect to server');
-    }
+  const fullData = {
+    ...formData,
+    domainsOfInterest,
+    othersDomain,
   };
+  
+  try {
+    const response = await fetch(`http://localhost:5000/api/profile/${user.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(fullData),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert('Profile updated successfully!');
+    } else {
+      alert('Error saving profile: ' + result.message);
+    }
+  } catch (error) {
+    console.error('Network error:', error);
+    alert('Network error: Could not connect to server');
+  }
+};
 
   return (
     <div className={`flex h-screen dashboard-container${isDarkMode ? ' dark' : ''}`}>
