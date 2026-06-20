@@ -16,6 +16,7 @@ import SkillBadgeForm from "./components/Student_Dashboard/SkillBadges/SkillBadg
 import NotificationsPage from "./components/Student_Dashboard/NotificationsPage/NotificationsPage";
 import Assessments from "./components/Student_Dashboard/dashboard/Assessments";
 import QuizAttempt from "./components/Student_Dashboard/dashboard/QuizAttempt";
+import HRPractice from "./components/Student_Dashboard/dashboard/HRPractice";
 
 // Company / Others
 import CompanyDashboardHome from "./pages/Index";
@@ -49,6 +50,7 @@ function App() {
         <Route path="/dashboard/assessments/:id" element={<QuizAttempt />} />   
         <Route path="/dashboard/skill-badges" element={<SkillBadgeForm />} />
         <Route path="/dashboard/notifications" element={<NotificationsPage />} />
+        <Route path="/dashboard/hr-practice" element={<HRPractice />} />
         
         {/* ===== Company Dashboard ===== */}
         <Route path="/company" element={<CompanyDashboardHome />} />

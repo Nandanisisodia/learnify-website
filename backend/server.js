@@ -22,6 +22,7 @@ const analyticsRoutes = require('./routes/analytics');
 const projectsRoutes = require('./routes/projects');
 const mentorReviewsRoutes = require('./routes/mentorReviews');
 const quizRoutes = require('./routes/quiz');
+const hrQuestionsRoutes = require('./routes/hrQuestions');
 
 // Routes
 app.use('/api', authRoutes);
@@ -36,6 +37,7 @@ app.use('/api', analyticsRoutes);
 app.use('/api', projectsRoutes);
 app.use('/api', mentorReviewsRoutes);
 app.use('/api', quizRoutes);
+app.use('/api', hrQuestionsRoutes);
 
 
 // Health check

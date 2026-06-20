@@ -10,6 +10,8 @@ import {
   X,
   ClipboardList,
   FileQuestion,
+  MessageCircleQuestion,
+    Bell,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -20,6 +22,8 @@ const sidebarItems = [
   { id: "projects", label: "Projects", icon: FolderOpen },
   { id: "assignments", label: "Assignments", icon: ClipboardList },
   { id: "assessments", label: "Assessments", icon: FileQuestion },
+  { id: "hrquestions", label: "HR Questions", icon: MessageCircleQuestion },
+  { id: "notices", label: "Notices", icon: Bell },
   { id: "analytics", label: "Analytics", icon: BarChart3 },
   { id: "mentor", label: "Mentor Reviews", icon: MessageSquare },
 ];
