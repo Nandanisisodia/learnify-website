@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Bar, Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,70 +10,57 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { TrendingUp, Users, DollarSign, Code, Award } from "lucide-react";
+import { TrendingUp, Users, GraduationCap, Building2 } from "lucide-react";
+import axios from "axios";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend);
 
 function Analytics() {
-  const [analytics] = useState({
-    totalHires: 120,
-    topCompanies: ["TCS", "Google", "Infosys"],
-    avgPlacement: "6.5 LPA",
-    mostPopularTech: "React.js",
-    bestMentor: "Dr. Reddy",
-    hireTrend: [
-      { month: "Jan", hires: 10 },
-      { month: "Feb", hires: 15 },
-      { month: "Mar", hires: 20 },
-      { month: "Apr", hires: 12 },
-      { month: "May", hires: 18 },
-      { month: "Jun", hires: 25 },
-    ],
-    placementDistribution: {
-      "3-5 LPA": 30,
-      "5-8 LPA": 50,
-      "8-12 LPA": 25,
-      "12+ LPA": 15,
-    },
+  const [analytics, setAnalytics] = useState({
+    totalHires: 0,
+    totalCompanies: 0,
+    totalStudents: 0,
+    approvedStudents: 0,
+    topCompanies: []
   });
 
-  const hireTrendData = {
-    labels: analytics.hireTrend.map((data) => data.month),
-    datasets: [
-      {
-        label: "Hires per Month",
-        data: analytics.hireTrend.map((data) => data.hires),
-        backgroundColor: "rgba(254, 109, 53,0.6)",
-        borderColor: "rgba(254, 109, 53,1)",
-        borderWidth: 1,
-      },
-    ],
-  };
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/analytics");
+        if (res.data.success) setAnalytics(res.data.data);
+      } catch (err) {
+        console.error("Failed to fetch analytics:", err);
+      }
+    };
+    fetchAnalytics();
+  }, []);
 
-  const placementDistributionData = {
-    labels: Object.keys(analytics.placementDistribution),
+  const analyticsCards = [
+    { title: "Total Students", value: analytics.totalStudents, icon: Users, color: "primary" },
+    { title: "Approved Students", value: analytics.approvedStudents, icon: GraduationCap, color: "secondary" },
+    { title: "Total Hires", value: analytics.totalHires, icon: TrendingUp, color: "accent" },
+    { title: "Active Companies", value: analytics.totalCompanies, icon: Building2, color: "success" },
+  ];
+
+  const placementChartData = {
+    labels: analytics.topCompanies.map((c) => c.name),
     datasets: [
       {
-        label: "Placement Distribution",
-        data: Object.values(analytics.placementDistribution),
+        label: "Hires",
+        data: analytics.topCompanies.map((c) => c.hires),
         backgroundColor: [
           "#9370DB",
           "rgba(0, 208, 181,1)",
           "rgba(254, 109, 53,0.6)",
           "#FF6384",
+          "#36A2EB"
         ],
         borderColor: "#ffffff",
         borderWidth: 2,
       },
     ],
   };
-
-  const analyticsCards = [
-    { title: "Total Hires", value: analytics.totalHires, icon: Users, color: "primary" },
-    { title: "Avg. Package", value: analytics.avgPlacement, icon: DollarSign, color: "secondary" },
-    { title: "Most Popular Tech", value: analytics.mostPopularTech, icon: Code, color: "accent" },
-    { title: "Top Mentor", value: analytics.bestMentor, icon: Award, color: "success" },
-  ];
 
   return (
     <section className="mb-8">
@@ -85,7 +72,6 @@ function Analytics() {
         Analytics Overview
       </motion.h2>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {analyticsCards.map((card, index) => (
           <motion.div
@@ -110,7 +96,6 @@ function Analytics() {
         ))}
       </div>
 
-      {/* Top Companies Card */}
       <motion.div
         className="stat-card p-6 mb-8"
         initial={{ opacity: 0, y: 20 }}
@@ -121,62 +106,45 @@ function Analytics() {
           <TrendingUp className="w-5 h-5 text-primary" />
           Top Hiring Companies
         </h3>
-        <div className="flex flex-wrap gap-3">
-          {analytics.topCompanies.map((company, i) => (
-            <motion.span
-              key={i}
-              className="px-4 py-2 bg-gradient-primary text-white rounded-xl font-medium"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {company}
-            </motion.span>
-          ))}
-        </div>
+        {analytics.topCompanies.length === 0 ? (
+          <p className="text-muted-foreground">No approved companies yet.</p>
+        ) : (
+          <div className="flex flex-wrap gap-3">
+            {analytics.topCompanies.map((company, i) => (
+              <motion.span
+                key={i}
+                className="px-4 py-2 bg-gradient-primary text-white rounded-xl font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {company.name} ({company.hires})
+              </motion.span>
+            ))}
+          </div>
+        )}
       </motion.div>
 
-      {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {analytics.topCompanies.length > 0 && (
         <motion.div
-          className="stat-card p-6"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <h3 className="text-xl font-bold text-foreground mb-4">Monthly Hire Trend</h3>
-          <div className="h-64">
-            <Bar 
-              data={hireTrendData} 
-              options={{ 
-                responsive: true, 
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } }
-              }} 
-            />
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="stat-card p-6"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
+          className="stat-card p-6 max-w-xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          <h3 className="text-xl font-bold text-foreground mb-4">Placement Distribution</h3>
+          <h3 className="text-xl font-bold text-foreground mb-4">Hires Distribution by Company</h3>
           <div className="h-64">
-            <Pie 
-              data={placementDistributionData} 
-              options={{ 
-                responsive: true, 
-                maintainAspectRatio: false 
-              }} 
+            <Pie
+              data={placementChartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false
+              }}
             />
           </div>
         </motion.div>
-      </div>
+      )}
     </section>
   );
 }
 
 export default Analytics;
-

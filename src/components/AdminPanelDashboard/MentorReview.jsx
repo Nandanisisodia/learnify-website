@@ -1,49 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MessageSquare, Star, User, Plus } from "lucide-react";
+import { MessageSquare, Star, User, Plus, Trash2 } from "lucide-react";
+import axios from "axios";
 
 function MentorReview() {
-  const [mentorReviews, setMentorReviews] = useState([
-    {
-      id: 1,
-      mentor: "Dr. Reddy",
-      feedback: "Excellent guidance for AI projects.",
-      rating: 5,
-    },
-    {
-      id: 2,
-      mentor: "Ms. Sharma",
-      feedback: "Resume Builder students had strong engagement.",
-      rating: 4.8,
-    },
-    {
-      id: 3,
-      mentor: "Dr. Singh",
-      feedback: "Provided insightful feedback on data projects.",
-      rating: 4.5,
-    },
-  ]);
-
+  const [mentorReviews, setMentorReviews] = useState([]);
   const [newReviewMentor, setNewReviewMentor] = useState("");
   const [newReviewText, setNewReviewText] = useState("");
   const [newReviewRating, setNewReviewRating] = useState("");
 
-  const addMentorReview = () => {
-    if (newReviewMentor && newReviewText && newReviewRating) {
-      const newId =
-        mentorReviews.length > 0
-          ? Math.max(...mentorReviews.map((r) => r.id)) + 1
-          : 1;
-      const review = {
-        id: newId,
+  const fetchReviews = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/mentor-reviews");
+      if (res.data.success) setMentorReviews(res.data.data);
+    } catch (err) {
+      console.error("Failed to fetch reviews:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const addMentorReview = async () => {
+    if (!newReviewMentor || !newReviewText || !newReviewRating) return;
+    try {
+      await axios.post("http://localhost:5000/api/mentor-reviews", {
         mentor: newReviewMentor,
         feedback: newReviewText,
         rating: parseFloat(newReviewRating),
-      };
-      setMentorReviews([...mentorReviews, review]);
+      });
       setNewReviewMentor("");
       setNewReviewText("");
       setNewReviewRating("");
+      fetchReviews();
+    } catch (err) {
+      console.error("Failed to add review:", err);
+    }
+  };
+
+  const removeReview = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/mentor-reviews/${id}`);
+      fetchReviews();
+    } catch (err) {
+      console.error("Delete failed:", err);
     }
   };
 
@@ -62,6 +63,7 @@ function MentorReview() {
       </div>
     );
   };
+
   return (
     <main className="p-4 sm:p-6 flex flex-col gap-6">
       <motion.h2
@@ -72,7 +74,6 @@ function MentorReview() {
         Mentor Reviews
       </motion.h2>
 
-      {/* Add Review Form */}
       <motion.div
         className="stat-card p-6 mb-6"
         initial={{ opacity: 0, y: 20 }}
@@ -131,39 +132,47 @@ function MentorReview() {
         </motion.button>
       </motion.div>
 
-      {/* Reviews Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {mentorReviews.map((review, index) => (
-          <motion.div
-            key={review.id}
-            className="stat-card p-6 cursor-pointer"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            whileHover={{ scale: 1.02, y: -4 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-2xl bg-gradient-accent">
-                <User className="w-6 h-6 text-white" />
+      {mentorReviews.length === 0 ? (
+        <p className="text-center text-gray-500">No reviews added yet.</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {mentorReviews.map((review, index) => (
+            <motion.div
+              key={review.id}
+              className="stat-card p-6 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.02, y: -4 }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-2xl bg-gradient-accent">
+                    <User className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-foreground">{review.mentor}</h4>
+                  </div>
+                </div>
+                <button onClick={() => removeReview(review.id)} className="text-red-500 hover:text-red-700">
+                  <Trash2 className="w-4 h-4" />
+                </button>
               </div>
-              <div>
-                <h4 className="text-lg font-bold text-foreground">{review.mentor}</h4>
+
+              <div className="flex items-start gap-3 mb-4">
+                <MessageSquare className="w-5 h-5 text-muted-foreground mt-1" />
+                <p className="text-muted-foreground italic leading-relaxed">
+                  "{review.feedback}"
+                </p>
               </div>
-            </div>
 
-            <div className="flex items-start gap-3 mb-4">
-              <MessageSquare className="w-5 h-5 text-muted-foreground mt-1" />
-              <p className="text-muted-foreground italic leading-relaxed">
-                "{review.feedback}"
-              </p>
-            </div>
-
-            <div className="flex items-center justify-between">
-              {renderStars(review.rating)}
-            </div>
-          </motion.div>
-        ))}
-      </div>
+              <div className="flex items-center justify-between">
+                {renderStars(Number(review.rating))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
     </main>
   );
 }

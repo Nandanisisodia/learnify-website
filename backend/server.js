@@ -17,6 +17,10 @@ const noticesRoutes = require('./routes/notices');
 const assignmentsRoutes = require('./routes/assignments');
 const studentsRoutes = require('./routes/students');
 const messagesRoutes = require('./routes/messages');
+const companiesRoutes = require('./routes/companies');
+const analyticsRoutes = require('./routes/analytics');
+const projectsRoutes = require('./routes/projects');
+const mentorReviewsRoutes = require('./routes/mentorReviews');
 
 
 // Routes
@@ -27,6 +31,10 @@ app.use('/api', noticesRoutes);
 app.use('/api', assignmentsRoutes);
 app.use('/api', studentsRoutes);
 app.use('/api', messagesRoutes);
+app.use('/api', companiesRoutes);
+app.use('/api', analyticsRoutes);
+app.use('/api', projectsRoutes);
+app.use('/api', mentorReviewsRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
