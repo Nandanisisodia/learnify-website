@@ -9,6 +9,7 @@ import {
   LogOut,
   X,
   ClipboardList,
+  FileQuestion,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -18,6 +19,7 @@ const sidebarItems = [
   { id: "companies", label: "Companies", icon: Building2 },
   { id: "projects", label: "Projects", icon: FolderOpen },
   { id: "assignments", label: "Assignments", icon: ClipboardList },
+  { id: "assessments", label: "Assessments", icon: FileQuestion },
   { id: "analytics", label: "Analytics", icon: BarChart3 },
   { id: "mentor", label: "Mentor Reviews", icon: MessageSquare },
 ];

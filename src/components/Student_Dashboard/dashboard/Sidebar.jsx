@@ -8,6 +8,7 @@ import {
   Bell,
   LogOut,
   X,
+  FileQuestion,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 //import LearnifyLogo from "../../../assets/Learnify_logo.png";
@@ -16,6 +17,7 @@ const sidebarItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
   { id: "profile", label: "Edit Profile", icon: User, path: "/dashboard/edit-profile" },
   { id: "projects", label: "My Projects", icon: FolderOpen, path: "/dashboard/my-projects" },
+  { id: "assessments", label: "Assessments", icon: FileQuestion, path: "/dashboard/assessments" },
   { id: "badges", label: "Skill Badges", icon: Award, path: "/dashboard/skill-badges" },
   { id: "notifications", label: "Notifications", icon: Bell, path: "/dashboard/notifications" },
 ];

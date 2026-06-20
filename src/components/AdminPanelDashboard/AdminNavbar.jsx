@@ -49,13 +49,13 @@ export default function AdminNavbar({ onMenuClick }) {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <div className="w-15 h-9 rounded-xl flex items-center justify-center relative overflow-hidden">
-              <img
-                src={logo}
-                alt="Logo"
-                className="object-contain w-25 h-25"
-              />
-            </div>
+            <div className="flex items-center justify-center">
+  <img
+    src={logo}
+    alt="Logo"
+    className="h-10 w-auto object-contain"
+  />
+</div>
           </motion.div>
         </div>
 

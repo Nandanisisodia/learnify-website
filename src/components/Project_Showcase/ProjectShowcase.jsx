@@ -20,13 +20,13 @@ const dummyProjects = [
     title: "AI Chatbot",
     date: "2024-03-15",
     duration:"4 weeks",
-    projectType: "Uptoskills Company Project",
+    projectType: " Company Project",
     description: "Chatbot Built with Python and TensorFlow.",
     github: "https://github.com/kushagra/project",
     domain: "Ai/ML",
     type: "Group",
     difficulty: "Medium",
-    contributors: ["Kushagra", "Shikhar", "Akshit"],
+    contributors: ["loky", "Sippy", "Akshit"],
     image:"https://cdn-icons-png.freepik.com/512/1698/1698535.png"
     
   },
@@ -40,7 +40,7 @@ const dummyProjects = [
     domain: "Web",
     type: "Individual",
     difficulty: "Easy",
-    contributors: ["Kushagra"],
+    contributors: ["Loriyan"],
     image:"https://cdn-icons-png.freepik.com/256/7867/7867446.png?semt=ais_hybrid"
 
     
@@ -55,7 +55,7 @@ const dummyProjects = [
     domain: "Web",
     type: "Individual",
     difficulty: "Easy",
-    contributors: ["Kushagra"],
+    contributors: ["Keshav"],
     image:"https://img.freepik.com/premium-vector/bubbly-stays-vector-icon-airbnb_720724-3093.jpg"
   },
   {
@@ -68,7 +68,7 @@ const dummyProjects = [
     domain: "Web",
     type: "Group",
     difficulty: "Medium",
-    contributors: ["Kushagra", "Nandani", "Janhavi", "Nitu"],
+    contributors: ["Nandani", "Janhavi", "Nitu"],
     image:"https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg"
   },
   {
@@ -81,7 +81,7 @@ const dummyProjects = [
     domain: "Web",
     type: "Group",
     difficulty: "Easy",
-    contributors: ["Kushagra", "Harnish"],
+    contributors: ["unnat", "prashant", "Nandani"],
     image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhcP_S0nBLZhsn6wn4LftrklqpArQLFh_49g&s"
   },
   {
@@ -94,7 +94,7 @@ const dummyProjects = [
     domain: "Cyber",
     type: "Group",
     difficulty: "Easy",
-    contributors: ["Nandani", "Janhavi","Nitu" ,"Kushagra"],
+    contributors: ["Nandani", "Janhavi" ,"lakshya"],
     image:"https://www.shutterstock.com/shutterstock/photos/758748727/display_1500/stock-vector-stop-hacker-ransomware-forbidden-signal-icon-on-white-background-vector-illustration-cybercrime-758748727.jpg"
   },
   {
@@ -107,7 +107,7 @@ const dummyProjects = [
     domain: "Web",
     type: "Group",
     difficulty: "Hard",
-    contributors: ["Kushagra", "Harnish"],
+    contributors: ["Shashank", "Hemil"],
     image:"https://img.icons8.com/?size=512&id=kTuxVYRKeKEY&format=png"
   },
   {
@@ -120,7 +120,7 @@ const dummyProjects = [
     domain: "IoT",
     type: "Group",
     difficulty: "Hard",
-    contributors: ["Shikhar", "Rizwan", "Kushagra"],
+    contributors: ["Khanak", "Rizwan", "Sanky"],
     image:"https://play-lh.googleusercontent.com/0iQhGlgBmUqD_CJ1sglSdppVocP0_VXruGrE5nitXotFqlZosvZcJqF_AmgFsmh-W6Q=w240-h480-rw"
   },
   {
@@ -133,7 +133,7 @@ const dummyProjects = [
     domain: "IoT",
     type: "Group",
     difficulty: "Hard",
-    contributors: ["Shikhar", "Rizwan", "Kushagra"],
+    contributors: ["Amit", "Kiran", "Reyansh"],
     image:"https://cdn-icons-png.flaticon.com/512/4992/4992693.png"
   },
 ];

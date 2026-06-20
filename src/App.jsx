@@ -14,6 +14,8 @@ import UserProfilePage from "./components/Student_Dashboard/UserProfilePage";
 import MyProjects from "./components/Student_Dashboard/myProjects/MyProjects";
 import SkillBadgeForm from "./components/Student_Dashboard/SkillBadges/SkillBadgeForm";
 import NotificationsPage from "./components/Student_Dashboard/NotificationsPage/NotificationsPage";
+import Assessments from "./components/Student_Dashboard/dashboard/Assessments";
+import QuizAttempt from "./components/Student_Dashboard/dashboard/QuizAttempt";
 
 // Company / Others
 import CompanyDashboardHome from "./pages/Index";
@@ -43,9 +45,11 @@ function App() {
         <Route path="/dashboard/profile" element={<UserProfilePage />} />
         <Route path="/dashboard/edit-profile" element={<EditProfilePage />} />
         <Route path="/dashboard/my-projects" element={<MyProjects />} />
+        <Route path="/dashboard/assessments" element={<Assessments />} />
+        <Route path="/dashboard/assessments/:id" element={<QuizAttempt />} />   
         <Route path="/dashboard/skill-badges" element={<SkillBadgeForm />} />
         <Route path="/dashboard/notifications" element={<NotificationsPage />} />
-
+        
         {/* ===== Company Dashboard ===== */}
         <Route path="/company" element={<CompanyDashboardHome />} />
         <Route path="/company/*" element={<CompanyNotFound />} />

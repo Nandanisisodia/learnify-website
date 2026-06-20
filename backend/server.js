@@ -21,7 +21,7 @@ const companiesRoutes = require('./routes/companies');
 const analyticsRoutes = require('./routes/analytics');
 const projectsRoutes = require('./routes/projects');
 const mentorReviewsRoutes = require('./routes/mentorReviews');
-
+const quizRoutes = require('./routes/quiz');
 
 // Routes
 app.use('/api', authRoutes);
@@ -35,6 +35,8 @@ app.use('/api', companiesRoutes);
 app.use('/api', analyticsRoutes);
 app.use('/api', projectsRoutes);
 app.use('/api', mentorReviewsRoutes);
+app.use('/api', quizRoutes);
+
 
 // Health check
 app.get('/health', (req, res) => {

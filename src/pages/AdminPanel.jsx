@@ -10,6 +10,7 @@ import Project from "../components/AdminPanelDashboard/Project";
 import Analytics from "../components/AdminPanelDashboard/Analytics";
 import MentorReview from "../components/AdminPanelDashboard/MentorReview";
 import Assignments from "../components/AdminPanelDashboard/Assignments";
+import Quizzes from "../components/AdminPanelDashboard/Quizzes";
 
 function AdminPanel() {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -24,6 +25,7 @@ function AdminPanel() {
       case "assignments": return <Assignments />;
       case "analytics": return <Analytics />;
       case "mentor": return <MentorReview />;
+      case "assessments": return <Quizzes />;
       default: return <DashboardMain />;
     }
   };
