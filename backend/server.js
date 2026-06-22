@@ -25,6 +25,7 @@ const quizRoutes = require('./routes/quiz');
 const hrQuestionsRoutes = require('./routes/hrQuestions');
 const studentProjectsRoutes = require('./routes/studentProjects');
 const skillBadgesRoutes = require('./routes/skillBadges');
+const contactRoutes = require('./routes/contact');
 
 // Routes
 app.use('/api', authRoutes);
@@ -42,6 +43,7 @@ app.use('/api', quizRoutes);
 app.use('/api', hrQuestionsRoutes);
 app.use('/api', studentProjectsRoutes);
 app.use('/api', skillBadgesRoutes);
+app.use('/api', contactRoutes);
 
 
 // Health check
