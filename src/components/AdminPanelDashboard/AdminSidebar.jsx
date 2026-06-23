@@ -12,6 +12,7 @@ import {
   FileQuestion,
   MessageCircleQuestion,
     Bell,
+    Mail,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -26,6 +27,7 @@ const sidebarItems = [
   { id: "notices", label: "Notices", icon: Bell },
   { id: "analytics", label: "Analytics", icon: BarChart3 },
   { id: "mentor", label: "Mentor Reviews", icon: MessageSquare },
+  { id: "contacts", label: "Contact Messages", icon: Mail },
 ];
 
 export default function AdminSidebar({ isOpen, setIsOpen, activeSection, setActiveSection }) {

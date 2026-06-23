@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import LearnifyLogo from "../assets/Learnify_logo.png";
+import { Link } from "react-router-dom";
 
 export default function App() {
   return (
@@ -7,20 +9,30 @@ export default function App() {
       {/* Header */}
       <header className="fixed w-full z-50 bg-white/80 backdrop-blur-lg shadow-sm transition">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-          <img src="/Learnify.png" alt="Logo" className="h-10 transition-transform hover:scale-110" />
+          <img src={LearnifyLogo} alt="Logo" className="h-10 transition-transform hover:scale-110" />
           <nav className="flex space-x-6 font-medium text-gray-800 text-sm">
-            {["Home", "About", "Programs", "Contact"].map((link, i) => (
-              <a key={i} href="#" className="relative group hover:text-[#00BDA6]">
-                {link}
-                <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#00BDA6] group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
+            <a href="#home" className="relative group hover:text-[#00BDA6]">
+              Home
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#00BDA6] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="#programs" className="relative group hover:text-[#00BDA6]">
+              About
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#00BDA6] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="#programs" className="relative group hover:text-[#00BDA6]">
+              Programs
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#00BDA6] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <Link to="/contact" className="relative group hover:text-[#00BDA6]">
+              Contact
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#00BDA6] group-hover:w-full transition-all duration-300"></span>
+            </Link>
           </nav>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 md:pt-44 pb-20 px-6 md:px-16 bg-gradient-to-br from-[#e0fdf4] via-[#f7fffe] to-[#c1f6e8] relative overflow-hidden">
+      <section id="home" className="pt-32 md:pt-44 pb-20 px-6 md:px-16 bg-gradient-to-br from-[#e0fdf4] via-[#f7fffe] to-[#c1f6e8] relative overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -82,7 +94,7 @@ export default function App() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-6 md:px-16 bg-white text-center">
+      <section id="programs" className="py-20 px-6 md:px-16 bg-white text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-10">What We Offer</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
@@ -139,7 +151,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white text-center py-6 text-sm">
-        <p>© 2025. Built with 💻 by learners worldwide.</p>
+        <p>© Learnify 2025. Built with 💻 by learners worldwide.</p>
       </footer>
     </div>
   );

@@ -13,6 +13,7 @@ import Assignments from "../components/AdminPanelDashboard/Assignments";
 import Quizzes from "../components/AdminPanelDashboard/Quizzes";
 import HRQuestions from "../components/AdminPanelDashboard/HRQuestions";
 import Notices from "../components/AdminPanelDashboard/Notices";
+import ContactMessages from "../components/AdminPanelDashboard/ContactMessages";
 
 function AdminPanel() {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -30,6 +31,7 @@ function AdminPanel() {
       case "assessments": return <Quizzes />;
       case "hrquestions": return <HRQuestions />;
       case "notices": return <Notices />;
+      case "contacts": return <ContactMessages />;
       default: return <DashboardMain />;
     }
   };
@@ -84,7 +86,7 @@ function AdminPanel() {
 
         <footer className="text-center py-8 border-t border-border mt-12">
           <p className="text-muted-foreground">
-            © 2025. All rights reserved. ✨
+            © Learnify 2025. All rights reserved. 
           </p>
         </footer>
       </div>

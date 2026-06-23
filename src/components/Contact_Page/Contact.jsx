@@ -19,9 +19,10 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    await submitForm('https://your-backend-url.com/api/contact', formData);
-  };
+  e.preventDefault();
+  await submitForm('http://localhost:5000/api/contact', formData);
+  setFormData({ name: '', email: '', inquiryType: '', message: '' });
+};
 
   return (
     <>
@@ -38,17 +39,17 @@ const Contact = () => {
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition">
             <MapPin className="text-orange-500 mx-auto mb-4" size={40} />
             <h3 className="text-xl font-semibold mb-2">Visit Us Daily:</h3>
-            <p className="text-gray-600">Palam, New Delhi, Delhi 110077</p>
+            <p className="text-gray-600">Faridabad, 121004</p>
           </div>
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition">
             <Phone className="text-orange-500 mx-auto mb-4" size={40} />
             <h3 className="text-xl font-semibold mb-2">Phone Us 24/7:</h3>
-            <p className="text-gray-600">+91 (931) 977 2294</p>
+            <p className="text-gray-600">+91 9625561482</p>
           </div>
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition">
             <Mail className="text-orange-500 mx-auto mb-4" size={40} />
             <h3 className="text-xl font-semibold mb-2">Mail Us 24/7:</h3>
-            <p className="text-gray-600">info@ex.com</p>
+            <p className="text-gray-600">nandanisisodia525@gmail.com</p>
           </div>
         </div>
       </section>
