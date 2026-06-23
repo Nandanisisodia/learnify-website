@@ -17,7 +17,7 @@ const NotificationsPage = ({ isDarkMode, toggleDarkMode }) => {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/notices');
+        const res = await axios.get('https://learnify-backend-td3k.onrender.com/api/notices');
         if (res.data.success) setNotifications(res.data.data);
       } catch (err) {
         console.error('Failed to fetch notifications:', err);

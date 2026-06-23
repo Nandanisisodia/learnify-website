@@ -27,7 +27,7 @@ function Analytics() {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/analytics");
+        const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/analytics");
         if (res.data.success) setAnalytics(res.data.data);
       } catch (err) {
         console.error("Failed to fetch analytics:", err);

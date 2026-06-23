@@ -41,7 +41,7 @@ const DashboardMain = () => {
   useEffect(() => {
     const fetchOverview = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/dashboard-overview");
+        const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/dashboard-overview");
         if (res.data.success) setData(res.data.data);
       } catch (err) {
         console.error("Failed to fetch dashboard overview:", err);

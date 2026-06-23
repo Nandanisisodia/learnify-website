@@ -15,7 +15,7 @@ function NoticeBoard() {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/notices');
+        const res = await axios.get('https://learnify-backend-td3k.onrender.com/api/notices');
         if (res.data.success) setNotices(res.data.data);
       } catch (err) {
         console.error('Failed to fetch notices:', err);

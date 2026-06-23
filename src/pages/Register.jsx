@@ -34,7 +34,7 @@ const RegistrationForm = () => {
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/profile",
+      "https://learnify-backend-td3k.onrender.com/api/profile",
       {
         full_name: formData.name,
         email: formData.email,          

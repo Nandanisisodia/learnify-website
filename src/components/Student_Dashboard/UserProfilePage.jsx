@@ -20,7 +20,7 @@ const UserProfilePage = ({ isDarkMode, toggleDarkMode }) => {
         return;
       }
       try {
-        const res = await axios.get('http://localhost:5000/api/profile/' + user.email);
+        const res = await axios.get('https://learnify-backend-td3k.onrender.com/api/profile/' + user.email);
         if (res.data.success) {
           setUserData(res.data.data);
         }

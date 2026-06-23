@@ -16,7 +16,7 @@ function Assignments() {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/students");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/students");
       if (res.data.success) setStudents(res.data.data);
     } catch (err) {
       console.error("Failed to fetch students:", err);
@@ -25,7 +25,7 @@ function Assignments() {
 
   const fetchAssignments = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/all-assignments");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/all-assignments");
       if (res.data.success) setAssignments(res.data.data);
     } catch (err) {
       console.error("Failed to fetch assignments:", err);
@@ -44,7 +44,7 @@ function Assignments() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/assignments", form);
+      await axios.post("https://learnify-backend-td3k.onrender.com/api/assignments", form);
       setForm({ user_id: "", task: "", subject: "", due_date: "", status: "Not Started" });
       fetchAssignments();
       alert("Assignment added successfully!");
@@ -56,7 +56,7 @@ function Assignments() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/assignments/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/assignments/${id}`);
       fetchAssignments();
     } catch (err) {
       console.error("Delete failed:", err);

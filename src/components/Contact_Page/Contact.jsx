@@ -20,7 +20,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
-  await submitForm('http://localhost:5000/api/contact', formData);
+  await submitForm('https://learnify-backend-td3k.onrender.com/api/contact', formData);
   setFormData({ name: '', email: '', inquiryType: '', message: '' });
 };
 

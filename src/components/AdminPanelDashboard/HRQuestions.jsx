@@ -11,7 +11,7 @@ function HRQuestions() {
 
   const fetchQuestions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/hr-questions");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/hr-questions");
       if (res.data.success) setQuestions(res.data.data);
     } catch (err) {
       console.error("Failed to fetch questions:", err);
@@ -26,7 +26,7 @@ function HRQuestions() {
     if (!question.trim()) return;
     try {
       const keywordsArray = keywords.split(',').map(k => k.trim()).filter(k => k);
-      await axios.post("http://localhost:5000/api/hr-questions", {
+      await axios.post("https://learnify-backend-td3k.onrender.com/api/hr-questions", {
         question,
         category,
         keywords: keywordsArray
@@ -41,7 +41,7 @@ function HRQuestions() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/hr-questions/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/hr-questions/${id}`);
       fetchQuestions();
     } catch (err) {
       console.error("Delete failed:", err);

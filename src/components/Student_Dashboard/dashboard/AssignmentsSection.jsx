@@ -9,7 +9,7 @@ function AssignmentsSection() {
 
   const fetchAssignments = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/assignments/${user?.id}`);
+      const res = await axios.get(`https://learnify-backend-td3k.onrender.com/api/assignments/${user?.id}`);
       if (res.data.success) setAssignments(res.data.data);
     } catch (err) {
       console.error('Failed to fetch assignments:', err);
@@ -22,7 +22,7 @@ function AssignmentsSection() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/assignments/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/assignments/${id}`);
       fetchAssignments();
     } catch (err) {
       console.error('Delete failed:', err);
@@ -31,7 +31,7 @@ function AssignmentsSection() {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.patch(`http://localhost:5000/api/assignments/${id}`, { status: newStatus });
+      await axios.patch(`https://learnify-backend-td3k.onrender.com/api/assignments/${id}`, { status: newStatus });
       fetchAssignments();
     } catch (err) {
       console.error('Update failed:', err);

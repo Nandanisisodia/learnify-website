@@ -8,7 +8,7 @@ function ContactMessages() {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/contact");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/contact");
       if (res.data.success) setMessages(res.data.data);
     } catch (err) {
       console.error("Failed to fetch messages:", err);
@@ -21,7 +21,7 @@ function ContactMessages() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/contact/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/contact/${id}`);
       fetchMessages();
     } catch (err) {
       console.error("Delete failed:", err);

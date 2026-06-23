@@ -11,7 +11,7 @@ function Project() {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/projects");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/projects");
       if (res.data.success) setProjects(res.data.data);
     } catch (err) {
       console.error("Failed to fetch projects:", err);
@@ -25,7 +25,7 @@ function Project() {
   const addProject = async () => {
     if (!newProjectTitle.trim() || !newProjectMentor.trim()) return;
     try {
-      await axios.post("http://localhost:5000/api/projects", {
+      await axios.post("https://learnify-backend-td3k.onrender.com/api/projects", {
         title: newProjectTitle,
         mentor: newProjectMentor,
         students: parseInt(newProjectStudents, 10) || 0,
@@ -41,7 +41,7 @@ function Project() {
 
   const removeProject = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/projects/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/projects/${id}`);
       fetchProjects();
     } catch (err) {
       console.error("Delete failed:", err);

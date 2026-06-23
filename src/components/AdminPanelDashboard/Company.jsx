@@ -9,7 +9,7 @@ export default function Company() {
 
   const fetchCompanies = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/companies");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/companies");
       if (res.data.success) setCompanies(res.data.data);
     } catch (err) {
       console.error("Failed to fetch companies:", err);
@@ -23,7 +23,7 @@ export default function Company() {
   const addCompany = async () => {
     if (!newCompany.trim()) return;
     try {
-      await axios.post("http://localhost:5000/api/companies", { name: newCompany });
+      await axios.post("https://learnify-backend-td3k.onrender.com/api/companies", { name: newCompany });
       setNewCompany("");
       fetchCompanies();
     } catch (err) {
@@ -33,7 +33,7 @@ export default function Company() {
 
   const handleCompanyApproval = async (id, action) => {
     try {
-      await axios.patch(`http://localhost:5000/api/companies/${id}/status`, { status: action });
+      await axios.patch(`https://learnify-backend-td3k.onrender.com/api/companies/${id}/status`, { status: action });
       fetchCompanies();
     } catch (err) {
       console.error("Status update failed:", err);
@@ -42,7 +42,7 @@ export default function Company() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/companies/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/companies/${id}`);
       fetchCompanies();
     } catch (err) {
       console.error("Delete failed:", err);
@@ -51,7 +51,7 @@ export default function Company() {
 
   const handleHiresUpdate = async (id, hires) => {
   try {
-    await axios.patch(`http://localhost:5000/api/companies/${id}/hires`, { hires: Number(hires) });
+    await axios.patch(`https://learnify-backend-td3k.onrender.com/api/companies/${id}/hires`, { hires: Number(hires) });
     fetchCompanies();
   } catch (err) {
     console.error("Hires update failed:", err);

@@ -24,7 +24,7 @@ const SkillBadgeForm = ({ isDarkMode, toggleDarkMode }) => {
   const fetchBadges = async () => {
     if (!user?.id) return;
     try {
-      const res = await axios.get(`http://localhost:5000/api/skill-badges/${user.id}`);
+      const res = await axios.get(`https://learnify-backend-td3k.onrender.com/api/skill-badges/${user.id}`);
       if (res.data.success) setBadges(res.data.data);
     } catch (err) {
       console.error('Failed to fetch badges:', err);
@@ -50,7 +50,7 @@ const SkillBadgeForm = ({ isDarkMode, toggleDarkMode }) => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/skill-badges', {
+      await axios.post('https://learnify-backend-td3k.onrender.com/api/skill-badges', {
         user_id: user.id,
         ...formData
       });
@@ -64,7 +64,7 @@ const SkillBadgeForm = ({ isDarkMode, toggleDarkMode }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/skill-badges/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/skill-badges/${id}`);
       fetchBadges();
     } catch (err) {
       console.error('Delete failed:', err);

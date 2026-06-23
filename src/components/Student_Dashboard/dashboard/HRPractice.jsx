@@ -20,10 +20,10 @@ function HRPractice() {
 
   const fetchData = async () => {
     try {
-      const qRes = await axios.get("http://localhost:5000/api/hr-questions");
+      const qRes = await axios.get("https://learnify-backend-td3k.onrender.com/api/hr-questions");
       if (qRes.data.success) setQuestions(qRes.data.data);
 
-      const hRes = await axios.get(`http://localhost:5000/api/hr-practice/${user?.id}`);
+      const hRes = await axios.get(`https://learnify-backend-td3k.onrender.com/api/hr-practice/${user?.id}`);
       if (hRes.data.success) setHistory(hRes.data.data);
     } catch (err) {
       console.error("Failed to fetch data:", err);
@@ -54,7 +54,7 @@ function HRPractice() {
     }
     setSubmitting(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/hr-practice", {
+      const res = await axios.post("https://learnify-backend-td3k.onrender.com/api/hr-practice", {
         user_id: user.id,
         question_id: activeQuestion.id,
         answer

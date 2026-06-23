@@ -15,10 +15,10 @@ function Assessments() {
 
   const fetchData = async () => {
     try {
-      const quizRes = await axios.get("http://localhost:5000/api/quizzes");
+      const quizRes = await axios.get("https://learnify-backend-td3k.onrender.com/api/quizzes");
       if (quizRes.data.success) setQuizzes(quizRes.data.data);
 
-      const resultsRes = await axios.get(`http://localhost:5000/api/quiz-results/${user?.id}`);
+      const resultsRes = await axios.get(`https://learnify-backend-td3k.onrender.com/api/quiz-results/${user?.id}`);
       if (resultsRes.data.success) setResults(resultsRes.data.data);
     } catch (err) {
       console.error("Failed to fetch data:", err);

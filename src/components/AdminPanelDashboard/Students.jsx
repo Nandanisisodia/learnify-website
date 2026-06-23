@@ -9,7 +9,7 @@ function Students() {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/students');
+      const res = await axios.get('https://learnify-backend-td3k.onrender.com/api/students');
       if (res.data.success) setStudents(res.data.data);
     } catch (err) {
       console.error('Failed to fetch students:', err);
@@ -22,7 +22,7 @@ function Students() {
 
   const handleStudentApproval = async (id, action) => {
     try {
-      await axios.patch(`http://localhost:5000/api/students/${id}/status`, { status: action });
+      await axios.patch(`https://learnify-backend-td3k.onrender.com/api/students/${id}/status`, { status: action });
       fetchStudents();
     } catch (err) {
       console.error('Status update failed:', err);

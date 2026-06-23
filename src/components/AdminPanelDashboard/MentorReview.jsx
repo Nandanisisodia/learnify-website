@@ -11,7 +11,7 @@ function MentorReview() {
 
   const fetchReviews = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/mentor-reviews");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/mentor-reviews");
       if (res.data.success) setMentorReviews(res.data.data);
     } catch (err) {
       console.error("Failed to fetch reviews:", err);
@@ -25,7 +25,7 @@ function MentorReview() {
   const addMentorReview = async () => {
     if (!newReviewMentor || !newReviewText || !newReviewRating) return;
     try {
-      await axios.post("http://localhost:5000/api/mentor-reviews", {
+      await axios.post("https://learnify-backend-td3k.onrender.com/api/mentor-reviews", {
         mentor: newReviewMentor,
         feedback: newReviewText,
         rating: parseFloat(newReviewRating),
@@ -41,7 +41,7 @@ function MentorReview() {
 
   const removeReview = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/mentor-reviews/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/mentor-reviews/${id}`);
       fetchReviews();
     } catch (err) {
       console.error("Delete failed:", err);

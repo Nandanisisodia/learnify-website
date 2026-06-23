@@ -17,7 +17,7 @@ const StudentProfileForm = ({ onSubmit }) => {
       const user = JSON.parse(localStorage.getItem('user'));
       if (!user?.email) return;
       try {
-        const res = await axios.get(`http://localhost:5000/api/profile/${user.email}`);
+        const res = await axios.get(`https://learnify-backend-td3k.onrender.com/api/profile/${user.email}`);
         if (res.data.success) {
           const d = res.data.data;
           setFormData({

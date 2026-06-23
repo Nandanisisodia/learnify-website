@@ -16,7 +16,7 @@ function StatsGrid() {
       try {
         const user = JSON.parse(localStorage.getItem('user'));
         if (!user?.id) return;
-        const res = await axios.get(`http://localhost:5000/api/stats/${user.id}`);
+        const res = await axios.get(`https://learnify-backend-td3k.onrender.com/api/stats/${user.id}`);
         if (res.data.success) {
           setStats(res.data.data);
         }

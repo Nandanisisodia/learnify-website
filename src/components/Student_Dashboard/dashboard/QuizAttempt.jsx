@@ -21,7 +21,7 @@ function QuizAttempt() {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/quizzes/${id}/attempt`);
+        const res = await axios.get(`https://learnify-backend-td3k.onrender.com/api/quizzes/${id}/attempt`);
         if (res.data.success) {
           setQuiz(res.data.data.quiz);
           setQuestions(res.data.data.questions);
@@ -42,7 +42,7 @@ function QuizAttempt() {
       if (!window.confirm("Some questions are unanswered. Submit anyway?")) return;
     }
     try {
-      const res = await axios.post(`http://localhost:5000/api/quizzes/${id}/submit`, {
+      const res = await axios.post(`https://learnify-backend-td3k.onrender.com/api/quizzes/${id}/submit`, {
         user_id: user.id,
         answers
       });

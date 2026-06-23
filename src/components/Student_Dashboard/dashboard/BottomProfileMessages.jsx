@@ -12,14 +12,14 @@ function BottomProfileMessages() {
     const fetchData = async () => {
       try {
         // Profile completion
-        const profileRes = await axios.get(`http://localhost:5000/api/profile-completion/${user?.id}`);
+        const profileRes = await axios.get(`https://learnify-backend-td3k.onrender.com/api/profile-completion/${user?.id}`);
         if (profileRes.data.success) {
           setCompletion(profileRes.data.data.completion);
           setStrength(profileRes.data.data.strength);
         }
 
         // Messages
-        const msgRes = await axios.get(`http://localhost:5000/api/messages/${user?.id}`);
+        const msgRes = await axios.get(`https://learnify-backend-td3k.onrender.com/api/messages/${user?.id}`);
         if (msgRes.data.success) setMessages(msgRes.data.data);
       } catch (err) {
         console.error('Failed to fetch data:', err);

@@ -13,7 +13,7 @@ function Quizzes() {
 
   const fetchQuizzes = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/quizzes");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/quizzes");
       if (res.data.success) setQuizzes(res.data.data);
     } catch (err) {
       console.error("Failed to fetch quizzes:", err);
@@ -44,7 +44,7 @@ function Quizzes() {
       return;
     }
     try {
-      await axios.post("http://localhost:5000/api/quizzes", { title, subject, questions });
+      await axios.post("https://learnify-backend-td3k.onrender.com/api/quizzes", { title, subject, questions });
       alert("Quiz created successfully!");
       setTitle("");
       setSubject("");
@@ -58,7 +58,7 @@ function Quizzes() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/quizzes/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/quizzes/${id}`);
       fetchQuizzes();
     } catch (err) {
       console.error("Delete failed:", err);

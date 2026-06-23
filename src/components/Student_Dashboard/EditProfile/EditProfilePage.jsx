@@ -44,7 +44,7 @@ const handleFormSubmit = async (formData) => {
   };
   
   try {
-    const response = await fetch(`http://localhost:5000/api/profile/${user.id}`, {
+    const response = await fetch(`https://learnify-backend-td3k.onrender.com/api/profile/${user.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

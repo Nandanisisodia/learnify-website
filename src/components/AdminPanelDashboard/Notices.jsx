@@ -16,7 +16,7 @@ function Notices() {
 
   const fetchNotices = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/notices");
+      const res = await axios.get("https://learnify-backend-td3k.onrender.com/api/notices");
       if (res.data.success) setNotices(res.data.data);
     } catch (err) {
       console.error("Failed to fetch notices:", err);
@@ -30,7 +30,7 @@ function Notices() {
   const handleAdd = async () => {
     if (!text.trim()) return;
     try {
-      await axios.post("http://localhost:5000/api/notices", { text, type });
+      await axios.post("https://learnify-backend-td3k.onrender.com/api/notices", { text, type });
       setText("");
       fetchNotices();
     } catch (err) {
@@ -40,7 +40,7 @@ function Notices() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/notices/${id}`);
+      await axios.delete(`https://learnify-backend-td3k.onrender.com/api/notices/${id}`);
       fetchNotices();
     } catch (err) {
       console.error("Delete failed:", err);
